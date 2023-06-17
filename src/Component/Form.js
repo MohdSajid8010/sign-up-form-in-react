@@ -1,61 +1,109 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 const Form = () => {
     let [name, setName] = useState("");
     let [email, setEmail] = useState("");
     let [pass, setPass] = useState("");
-    let [cpass,setCPass]=useState("");
-    let [error,setError]=useState("");
-    let [success,setSuccess]=useState("");
+    let [cpass, setCPass] = useState("");
+    let [error, setError] = useState("");
+    let [success, setSuccess] = useState("");
+
+    useEffect(() => {
+            const metaTags = document.getElementsByTagName('meta');
+
+            // Loop through all meta tags and update specific ones
+            for (let metaTag of metaTags) {
+
+                const name = metaTag.getAttribute('name');
+
+                // Update specific meta tags based on their name attribute
+                if (name === 'description') {
+                    metaTag.setAttribute('content', 'This is my updated sign-up page');
+                }
+                if (name === 'keywords') {
+                    metaTag.setAttribute('content', 'React,useState');
+                }
+                if (name === 'author') {
+                    metaTag.setAttribute('content', 'sajid Acciojob Trainee');
+                }
+            }
+            // Update the document title
+            document.title = `latest sign up form`;
+
+    }, []);
 
 
-    function handle_submit(e)
-    {
+    function handle_submit(e) {
         e.preventDefault()
         console.log("in form")
-        if(!name.trim() || !email.trim() || !pass.trim()|| !cpass.trim())
-        {
+        if (!name.trim() || !email.trim() || !pass.trim() || !cpass.trim()) {
             setError("Error : All the fields are mandatory!");
-        } else if(!name.trim().includes(" "))
-        {
+        } else if (!name.trim().includes(" ")) {
             setError("Please Enter Full Name!");
-        }else if(! email.trim().includes("@"))
-        {
+        } else if (!email.trim().includes("@")) {
             setError("Please Enter Correct Email!");
-        }else if(pass.trim() !== cpass.trim())
-        {
+        } else if (pass.trim() !== cpass.trim()) {
             setError("Password And Confirm Password Not Match!");
-        }else{
+        } else {
             setError("")
             setSuccess("Successfully Signed Up!");
+            console.log(name,email,pass)
         }
     }
+
     return (
         <div>
 
-           <form>
-           <h1>Signup</h1>
-            <input type="text" onChange={(e) => setName(e.target.value)} placeholder="Full Name" />
-            <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-            <input type="password" onChange={(e) => setPass(e.target.value)} placeholder="Password" />
-            <input type="password" onChange={(e) => setCPass(e.target.value)} placeholder="Confirm Password" />
-            <div className="error">{error}</div>
-            <div className="success">{success}</div>
-            <button type="button" onClick={handle_submit} >Signup</button>
-           </form>
+            <form>
+                <h1>Signup</h1>
+                <input type="text"autoFocus onChange={(e) => setName(e.target.value)} placeholder="Full Name" />
+                <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+                <input type="password" onChange={(e) => setPass(e.target.value)} placeholder="Password" />
+                <input type="password" onChange={(e) => setCPass(e.target.value)} placeholder="Confirm Password" />
+                <div className="error">{error}</div>
+                <div className="success">{success}</div>
+                <button type="button" onClick={handle_submit} >Signup</button>
+            </form>
 
-            {/* {
 
-                <div>
-                    <p>{name}</p>
-                    <p>{email}</p>
-                    <p>{pass}</p>
-                    <p>{cpass}</p>
-                </div>
-
-            } */}
         </div>
     )
 }
 
 export default Form;
+
+/*
+import React, { useEffect } from 'react';
+
+const ChangeMetaTags = () => {
+  useEffect(() => {
+    const updateMetaTags = () => {
+      const metaTags = document.getElementsByTagName('meta');
+
+      // Loop through all meta tags and update specific ones
+      for (let i = 0; i < metaTags.length; i++) {
+        const metaTag = metaTags[i];
+        const name = metaTag.getAttribute('name');
+
+        // Update specific meta tags based on their name attribute
+        if (name === 'description') {
+          metaTag.setAttribute('content', 'This is a new description');
+        }
+        if (name === 'keywords') {
+          metaTag.setAttribute('content', 'new keyword1, new keyword2');
+        }
+      }
+
+      // Update the document title
+      document.title = 'New Document Title';
+    };
+
+    // Call the updateMetaTags function
+    updateMetaTags();
+  }, []);
+
+  return <></>; // Empty fragment as we don't need to render any UI
+};
+
+export default ChangeMetaTags;
+*/
