@@ -71,39 +71,3 @@ const Form = () => {
 }
 
 export default Form;
-
-/*
-import React, { useEffect } from 'react';
-
-const ChangeMetaTags = () => {
-  useEffect(() => {
-    const updateMetaTags = () => {
-      const metaTags = document.getElementsByTagName('meta');
-
-      // Loop through all meta tags and update specific ones
-      for (let i = 0; i < metaTags.length; i++) {
-        const metaTag = metaTags[i];
-        const name = metaTag.getAttribute('name');
-
-        // Update specific meta tags based on their name attribute
-        if (name === 'description') {
-          metaTag.setAttribute('content', 'This is a new description');
-        }
-        if (name === 'keywords') {
-          metaTag.setAttribute('content', 'new keyword1, new keyword2');
-        }
-      }
-
-      // Update the document title
-      document.title = 'New Document Title';
-    };
-
-    // Call the updateMetaTags function
-    updateMetaTags();
-  }, []);
-
-  return <></>; // Empty fragment as we don't need to render any UI
-};
-
-export default ChangeMetaTags;
-*/
